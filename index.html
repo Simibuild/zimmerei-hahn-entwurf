@@ -54,6 +54,16 @@
 
   .star { color: #FFB615; }
 
+  .option-btn {
+    background: #fff; border: 2px solid transparent; border-radius: 1rem; padding: 0.9rem 1rem;
+    font-weight: 600; font-size: 0.875rem; color: #1f2e17; text-align: center; cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .option-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -10px rgba(44,64,32,0.25); }
+  .option-btn.selected { border-color: #FFB615; background: #fff4de; }
+  .form-step { animation: stepIn 0.4s ease; }
+  @keyframes stepIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
+
   #mobile-menu { transition: max-height 0.35s ease, opacity 0.3s ease; overflow: hidden; }
 
   .blob { position: absolute; border-radius: 50%; filter: blur(0px); z-index: 0; }
@@ -485,28 +495,99 @@
         </div>
       </div>
 
-      <div class="reveal reveal-delay-1 lg:col-span-3 bg-primary-pale rounded-4xl p-8 sm:p-10">
-        <form action="mailto:zimmereihahn@web.de" method="post" enctype="text/plain" class="space-y-5">
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label class="block text-sm font-medium mb-1.5 text-primary-darker" for="name">Name</label>
-              <input type="text" id="name" name="Name" required class="w-full border border-primary/15 bg-white rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-accent">
+      <div class="reveal reveal-delay-1 lg:col-span-3 bg-primary-pale rounded-4xl p-8 sm:p-10 overflow-hidden">
+        <div class="mb-8">
+          <div class="flex justify-between items-center text-xs font-bold text-primary-dark/60 mb-2 tracking-wide">
+            <span id="step-label">SCHRITT 1 VON 5</span>
+            <span id="step-percent">20%</span>
+          </div>
+          <div class="h-1.5 bg-primary/10 rounded-full overflow-hidden">
+            <div id="progress-bar" class="h-full bg-accent rounded-full transition-all duration-500 ease-out" style="width:20%"></div>
+          </div>
+        </div>
+
+        <form id="anfrage-form" action="mailto:zimmereihahn@web.de" method="post" enctype="text/plain">
+          <input type="hidden" name="Vorhaben" id="vorhaben-hidden">
+          <input type="hidden" name="Projektgroesse" id="groesse-hidden">
+
+          <!-- Schritt 1: Vorhaben -->
+          <div class="form-step" data-step="1">
+            <h3 class="font-heading font-bold text-xl text-primary-darker mb-1">Was ist Ihr Vorhaben?</h3>
+            <p class="text-sm text-ink/60 mb-6">Wählen Sie, worum es bei Ihrem Projekt geht.</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="vorhaben-grid">
+              <button type="button" class="option-btn" data-group="vorhaben" data-value="Dachstuhl / Fachwerksanierung">Dachstuhl</button>
+              <button type="button" class="option-btn" data-group="vorhaben" data-value="Holzrahmenbau">Holzrahmenbau</button>
+              <button type="button" class="option-btn" data-group="vorhaben" data-value="Carport">Carport</button>
+              <button type="button" class="option-btn" data-group="vorhaben" data-value="Terrassenüberdachung">Terrasse</button>
+              <button type="button" class="option-btn" data-group="vorhaben" data-value="Balkon">Balkon</button>
+              <button type="button" class="option-btn" data-group="vorhaben" data-value="Verschalung">Verschalung</button>
+              <button type="button" class="option-btn" data-group="vorhaben" data-value="Binderbau">Binderbau</button>
+              <button type="button" class="option-btn" data-group="vorhaben" data-value="__sonstiges__">Sonstiges</button>
             </div>
-            <div>
-              <label class="block text-sm font-medium mb-1.5 text-primary-darker" for="email">E-Mail</label>
-              <input type="email" id="email" name="E-Mail" required class="w-full border border-primary/15 bg-white rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-accent">
+            <div id="sonstiges-wrap" class="hidden mt-4">
+              <input type="text" id="sonstiges-input" placeholder="Was genau planen Sie?" class="w-full border border-primary/15 bg-white rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-accent">
+              <button type="button" class="next-btn btn-pop mt-4 inline-flex items-center gap-2 bg-primary-darker hover:bg-primary-dark text-white font-bold px-6 py-3 rounded-full text-sm">Weiter</button>
             </div>
           </div>
-          <div>
-            <label class="block text-sm font-medium mb-1.5 text-primary-darker" for="tel">Telefon (optional)</label>
-            <input type="tel" id="tel" name="Telefon" class="w-full border border-primary/15 bg-white rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-accent">
+
+          <!-- Schritt 2: Projektgröße -->
+          <div class="form-step hidden" data-step="2">
+            <h3 class="font-heading font-bold text-xl text-primary-darker mb-1">Wie groß ist Ihr Projekt ungefähr?</h3>
+            <p class="text-sm text-ink/60 mb-6">Eine grobe Einschätzung reicht völlig.</p>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <button type="button" class="option-btn text-left" data-group="groesse" data-value="Klein, z.B. einzelner Balkon oder kleine Verschalung">Klein<span class="block text-xs font-normal text-ink/50 mt-1">z.B. einzelner Balkon oder kleine Verschalung</span></button>
+              <button type="button" class="option-btn text-left" data-group="groesse" data-value="Mittel, z.B. Carport oder Terrassenüberdachung">Mittel<span class="block text-xs font-normal text-ink/50 mt-1">z.B. Carport oder Terrassenüberdachung</span></button>
+              <button type="button" class="option-btn text-left" data-group="groesse" data-value="Groß, z.B. kompletter Dachstuhl oder Anbau">Groß<span class="block text-xs font-normal text-ink/50 mt-1">z.B. kompletter Dachstuhl oder Anbau</span></button>
+              <button type="button" class="option-btn text-left" data-group="groesse" data-value="Noch nicht sicher">Weiß ich noch nicht<span class="block text-xs font-normal text-ink/50 mt-1">Besprechen wir gemeinsam</span></button>
+            </div>
           </div>
-          <div>
-            <label class="block text-sm font-medium mb-1.5 text-primary-darker" for="nachricht">Ihr Bauvorhaben</label>
-            <textarea id="nachricht" name="Nachricht" rows="4" required class="w-full border border-primary/15 bg-white rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-accent"></textarea>
+
+          <!-- Schritt 3: Ort -->
+          <div class="form-step hidden" data-step="3">
+            <h3 class="font-heading font-bold text-xl text-primary-darker mb-1">Wo liegt Ihr Grundstück?</h3>
+            <p class="text-sm text-ink/60 mb-6">Ort oder Postleitzahl reichen aus.</p>
+            <input type="text" name="Ort" placeholder="z.B. Birnbach" class="w-full border border-primary/15 bg-white rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-accent">
+            <button type="button" class="next-btn btn-pop mt-5 inline-flex items-center gap-2 bg-primary-darker hover:bg-primary-dark text-white font-bold px-6 py-3 rounded-full text-sm">Weiter</button>
           </div>
-          <button type="submit" class="btn-pop w-full bg-accent hover:bg-accent-dark text-primary-darker font-bold py-4 rounded-full text-base">
-            Anfrage senden
+
+          <!-- Schritt 4: Kontaktdaten -->
+          <div class="form-step hidden" data-step="4">
+            <h3 class="font-heading font-bold text-xl text-primary-darker mb-1">Wie erreichen wir Sie?</h3>
+            <p class="text-sm text-ink/60 mb-6">Damit wir uns bei Ihnen melden können.</p>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium mb-1.5 text-primary-darker" for="name">Name</label>
+                <input type="text" id="name" name="Name" required class="w-full border border-primary/15 bg-white rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-accent">
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1.5 text-primary-darker" for="email">E-Mail</label>
+                <input type="email" id="email" name="E-Mail" required class="w-full border border-primary/15 bg-white rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-accent">
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1.5 text-primary-darker" for="tel">Telefon (optional)</label>
+                <input type="tel" id="tel" name="Telefon" class="w-full border border-primary/15 bg-white rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-accent">
+              </div>
+            </div>
+            <button type="button" class="next-btn btn-pop mt-5 inline-flex items-center gap-2 bg-primary-darker hover:bg-primary-dark text-white font-bold px-6 py-3 rounded-full text-sm">Weiter</button>
+          </div>
+
+          <!-- Schritt 5: Zusammenfassung -->
+          <div class="form-step hidden" data-step="5">
+            <h3 class="font-heading font-bold text-xl text-primary-darker mb-1">Fast geschafft!</h3>
+            <p class="text-sm text-ink/60 mb-5">Kurz geprüft, dann ab an uns.</p>
+            <div id="summary" class="bg-white rounded-2xl p-5 text-sm text-ink/80 space-y-1.5 mb-5"></div>
+            <div class="mb-5">
+              <label class="block text-sm font-medium mb-1.5 text-primary-darker" for="nachricht">Noch etwas, das wir wissen sollten? (optional)</label>
+              <textarea id="nachricht" name="Nachricht" rows="3" class="w-full border border-primary/15 bg-white rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-accent"></textarea>
+            </div>
+            <button type="submit" class="btn-pop w-full bg-accent hover:bg-accent-dark text-primary-darker font-bold py-4 rounded-full text-base">
+              Anfrage jetzt senden
+            </button>
+          </div>
+
+          <button type="button" id="back-btn" class="hidden mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-accent-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" /></svg>
+            Zurück
           </button>
         </form>
       </div>
@@ -614,6 +695,97 @@
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ===== Mehrstufiges Anfrageformular =====
+  (function () {
+    const form = document.getElementById('anfrage-form');
+    if (!form) return;
+
+    const steps = [...form.querySelectorAll('.form-step')];
+    const totalSteps = steps.length;
+    const progressBar = document.getElementById('progress-bar');
+    const stepLabel = document.getElementById('step-label');
+    const stepPercent = document.getElementById('step-percent');
+    const backBtn = document.getElementById('back-btn');
+    const vorhabenHidden = document.getElementById('vorhaben-hidden');
+    const groesseHidden = document.getElementById('groesse-hidden');
+    const sonstigesWrap = document.getElementById('sonstiges-wrap');
+    const sonstigesInput = document.getElementById('sonstiges-input');
+    const summary = document.getElementById('summary');
+
+    let current = 1;
+
+    function showStep(n) {
+      steps.forEach(s => s.classList.toggle('hidden', Number(s.dataset.step) !== n));
+      const pct = Math.round((n / totalSteps) * 100);
+      progressBar.style.width = pct + '%';
+      stepLabel.textContent = 'SCHRITT ' + n + ' VON ' + totalSteps;
+      stepPercent.textContent = pct + '%';
+      backBtn.classList.toggle('hidden', n === 1);
+      if (n === totalSteps) buildSummary();
+    }
+
+    function goNext() { if (current < totalSteps) { current++; showStep(current); } }
+    function goBack() { if (current > 1) { current--; showStep(current); } }
+
+    backBtn.addEventListener('click', goBack);
+    form.querySelectorAll('.next-btn').forEach(btn => btn.addEventListener('click', goNext));
+
+    form.querySelectorAll('[data-group="vorhaben"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        form.querySelectorAll('[data-group="vorhaben"]').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        if (btn.dataset.value === '__sonstiges__') {
+          sonstigesWrap.classList.remove('hidden');
+          vorhabenHidden.value = '';
+          sonstigesInput.focus();
+        } else {
+          sonstigesWrap.classList.add('hidden');
+          vorhabenHidden.value = btn.dataset.value;
+          setTimeout(goNext, 250);
+        }
+      });
+    });
+
+    sonstigesInput.addEventListener('input', () => {
+      vorhabenHidden.value = sonstigesInput.value ? 'Sonstiges: ' + sonstigesInput.value : '';
+    });
+
+    form.querySelectorAll('[data-group="groesse"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        form.querySelectorAll('[data-group="groesse"]').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        groesseHidden.value = btn.dataset.value;
+        setTimeout(goNext, 250);
+      });
+    });
+
+    function buildSummary() {
+      const ort = form.querySelector('[name="Ort"]').value;
+      const name = form.querySelector('[name="Name"]').value;
+      const rows = [
+        ['Vorhaben', vorhabenHidden.value || '–'],
+        ['Größe', groesseHidden.value || '–'],
+        ['Ort', ort || '–'],
+        ['Name', name || '–'],
+      ];
+      summary.textContent = '';
+      rows.forEach(([label, val]) => {
+        const row = document.createElement('div');
+        row.className = 'flex justify-between gap-4';
+        const l = document.createElement('span');
+        l.className = 'text-ink/50';
+        l.textContent = label;
+        const v = document.createElement('span');
+        v.className = 'font-medium text-right';
+        v.textContent = val;
+        row.append(l, v);
+        summary.appendChild(row);
+      });
+    }
+
+    showStep(1);
+  })();
 </script>
 
 </body>
