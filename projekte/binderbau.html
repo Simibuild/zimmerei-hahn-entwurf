@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Binderbau | Zimmerei Hahn Birnbach</title>
+<meta name="description" content="Holzbinder überspannen große Distanzen ohne zusätzliche Stützen im Innenraum und kommen bei Carports, Hallen und weiträumigen Dachkonstruktionen zum Einsatz. Zimmerei Hahn fertigt und montiert Binderkonstruktionen statisch passgenau für Ihr individuelles Bauvorhaben.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: { DEFAULT: '#446033', dark: '#2c4020', darker: '#1f2e17', light: '#5a7d45', pale: '#eef2ea' },
+          accent: { DEFAULT: '#FFB615', dark: '#e39e07', pale: '#fff4de' },
+          cream: '#f9f6ef',
+          ink: '#26301f'
+        },
+        fontFamily: { heading: ['Poppins', 'sans-serif'], body: ['Inter', 'sans-serif'] },
+        borderRadius: { '4xl': '2rem', '5xl': '2.5rem' }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: #26301f; }
+  h1, h2, h3, .font-heading { font-family: 'Poppins', sans-serif; }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .btn-pop { transition: transform 0.2s ease, box-shadow 0.25s ease, background-color 0.2s ease; }
+  .btn-pop:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -8px rgba(255,182,21,0.55); }
+  .gallery-img { transition: transform 0.5s ease; }
+  .gallery-item:hover .gallery-img { transform: scale(1.06); }
+  #mobile-menu { transition: max-height 0.35s ease, opacity 0.3s ease; overflow: hidden; }
+</style>
+</head>
+<body class="bg-white text-ink">
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <a href="../index.html" class="flex items-center gap-2.5">
+        <img src="https://zimmereihahn.com/wp-content/uploads/2024/09/ZIMMEREI-edited.png" alt="Logo Zimmerei Hahn Birnbach" class="h-10 w-auto rounded-lg">
+        <span class="font-heading font-bold text-primary-dark text-lg leading-none">Zimmerei Hahn<br><span class="text-accent-dark text-[11px] font-semibold tracking-widest">BIRNBACH</span></span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-1 bg-primary-pale rounded-full p-1.5 text-sm font-medium text-primary-dark">
+        <a href="../index.html" class="px-5 py-2.5 rounded-full hover:bg-white">Start</a>
+        <a href="../index.html#leistungen" class="px-5 py-2.5 rounded-full hover:bg-white">Leistungen</a>
+        <a href="../index.html#projekte" class="px-5 py-2.5 rounded-full bg-primary-darker text-white">Projekte</a>
+        <a href="../index.html#ueber-uns" class="px-5 py-2.5 rounded-full hover:bg-white">Über uns</a>
+        <a href="../index.html#bewertungen" class="px-5 py-2.5 rounded-full hover:bg-white">Bewertungen</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="../index.html#kontakt" class="btn-pop hidden sm:inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-primary-darker font-bold px-5 py-3 rounded-full text-sm shadow-md">
+          Kontakt
+        </a>
+        <button id="menu-btn" class="lg:hidden text-primary-dark p-2" aria-label="Menü öffnen">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="lg:hidden max-h-0 opacity-0">
+      <nav class="flex flex-col gap-1 pb-5 text-primary-dark font-medium">
+        <a href="../index.html#leistungen" class="py-2 border-b border-black/5">Leistungen</a>
+        <a href="../index.html#projekte" class="py-2 border-b border-black/5">Projekte</a>
+        <a href="../index.html#ueber-uns" class="py-2 border-b border-black/5">Über uns</a>
+        <a href="../index.html#bewertungen" class="py-2 border-b border-black/5">Bewertungen</a>
+        <a href="../index.html#kontakt" class="mt-3 inline-flex justify-center bg-accent text-primary-darker font-bold px-4 py-3 rounded-full">Kontakt</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<section class="pt-40 pb-14 bg-primary-pale">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <a href="../index.html#projekte" class="reveal inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-accent-dark mb-6">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" /></svg>
+      Zurück zu allen Projekten
+    </a>
+    <p class="reveal text-accent-dark font-bold text-xs tracking-widest mb-3">PROJEKTGALERIE</p>
+    <h1 class="reveal font-heading font-extrabold text-4xl sm:text-5xl text-primary-darker leading-tight mb-5">Binderbau</h1>
+    <p class="reveal text-ink/70 text-lg leading-relaxed max-w-2xl">Holzbinder überspannen große Distanzen ohne zusätzliche Stützen im Innenraum und kommen bei Carports, Hallen und weiträumigen Dachkonstruktionen zum Einsatz. Zimmerei Hahn fertigt und montiert Binderkonstruktionen statisch passgenau für Ihr individuelles Bauvorhaben.</p>
+  </div>
+</section>
+
+<section class="py-16 sm:py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="reveal gallery-item rounded-2xl overflow-hidden shadow-md">
+        <img src="https://zimmereihahn.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-05-20-at-23.27.08-1-1024x768.jpeg" alt="Binderbau Holzkonstruktion, Zimmerei Hahn Birnbach" class="gallery-img w-full h-64 object-cover" data-lightbox="https://zimmereihahn.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-05-20-at-23.27.08-1-1024x768.jpeg">
+      </div>
+      <div class="reveal gallery-item rounded-2xl overflow-hidden shadow-md">
+        <img src="https://zimmereihahn.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-05-20-at-23.27.08-2-1024x768.jpeg" alt="Binderbau Holzkonstruktion, Zimmerei Hahn Birnbach" class="gallery-img w-full h-64 object-cover" data-lightbox="https://zimmereihahn.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-05-20-at-23.27.08-2-1024x768.jpeg">
+      </div>
+      <div class="reveal gallery-item rounded-2xl overflow-hidden shadow-md">
+        <img src="https://zimmereihahn.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-05-20-at-23.27.07-1024x768.jpeg" alt="Binderbau Holzkonstruktion, Zimmerei Hahn Birnbach" class="gallery-img w-full h-64 object-cover" data-lightbox="https://zimmereihahn.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-05-20-at-23.27.07-1024x768.jpeg">
+      </div>
+      <div class="reveal gallery-item rounded-2xl overflow-hidden shadow-md">
+        <img src="https://zimmereihahn.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-05-20-at-17.17.32-576x1024.jpeg" alt="Binderbau Holzkonstruktion, Zimmerei Hahn Birnbach" class="gallery-img w-full h-64 object-cover" data-lightbox="https://zimmereihahn.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-05-20-at-17.17.32-576x1024.jpeg">
+      </div>
+      <div class="reveal gallery-item rounded-2xl overflow-hidden shadow-md">
+        <img src="https://zimmereihahn.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-05-20-at-17.17.29-2-1024x576.jpeg" alt="Binderbau Holzkonstruktion, Zimmerei Hahn Birnbach" class="gallery-img w-full h-64 object-cover" data-lightbox="https://zimmereihahn.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-05-20-at-17.17.29-2-1024x576.jpeg">
+      </div>
+      <div class="reveal gallery-item rounded-2xl overflow-hidden shadow-md">
+        <img src="https://zimmereihahn.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-05-20-at-17.17.29-1-1024x576.jpeg" alt="Binderbau Holzkonstruktion, Zimmerei Hahn Birnbach" class="gallery-img w-full h-64 object-cover" data-lightbox="https://zimmereihahn.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-05-20-at-17.17.29-1-1024x576.jpeg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-primary-pale">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="reveal font-heading font-bold text-2xl sm:text-3xl text-primary-darker mb-4">Eigenes Projekt geplant?</h2>
+    <p class="reveal text-ink/70 mb-7">Sprechen Sie uns an, wir beraten Sie unverbindlich zu Ihrem Bauvorhaben.</p>
+    <a href="../index.html#kontakt" class="reveal btn-pop inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-primary-darker font-bold px-7 py-4 rounded-full text-base shadow-lg">
+      Jetzt anfragen
+    </a>
+  </div>
+</section>
+
+<footer class="bg-primary-darker text-white/70 py-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">
+    <div class="flex items-center gap-3">
+      <img src="https://zimmereihahn.com/wp-content/uploads/2024/09/ZIMMEREI-edited.png" alt="Zimmerei Hahn Logo" class="h-8 w-auto rounded">
+      <span>&copy; 2026 Zimmerei Hahn, Alioscha Ottweiler &middot; Kölner Straße 13, 57612 Birnbach</span>
+    </div>
+    <a href="tel:015755960932" class="hover:text-white">01575 5960932</a>
+  </div>
+</footer>
+
+<script src="../assets/gallery.js"></script>
+</body>
+</html>
