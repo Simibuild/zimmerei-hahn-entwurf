@@ -21,6 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
   overlay.addEventListener('click', close);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
 
+  const backLink = document.getElementById('back-link');
+  if (backLink) {
+    const cameFromSite = document.referrer && document.referrer.indexOf(location.origin) === 0;
+    if (cameFromSite && window.history.length > 1) {
+      backLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        history.back();
+      });
+    }
+  }
+
   const menuBtn = document.getElementById('menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   if (menuBtn && mobileMenu) {
